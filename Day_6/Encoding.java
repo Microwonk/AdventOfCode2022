@@ -16,7 +16,7 @@ public class Encoding {
         int j = 0;
         for (int k = 0; k < s1.length(); k++) {
             while (j < s1.length()) {
-                if (!(k == j)) {
+                if (k != j) {
                     if (s1.charAt(k) == s1.charAt(j)) {
                         return false;
                     }

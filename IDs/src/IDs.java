@@ -3,16 +3,15 @@ public class IDs {
     public static int[] getAllOverlaps() {        
         int overlaps = 0;
         int partialOverlaps = 0;
-        boolean counterbool, counterbool2;
+
         for (int i = 0; i < allIDs.length; i++) {
             if ((i + 1) % 2 == 0) {
-                counterbool = isOverlapping(allIDs[i - 1], allIDs[i]);
-                counterbool2 = partialOverlaps(allIDs[i - 1], allIDs[i]);
                 System.out.println(allIDs[i-1] + " " + allIDs[i]);
-                if (counterbool) {
+                
+                if (isOverlapping(allIDs[i - 1], allIDs[i])) {
                     overlaps++;
                 }
-                if (counterbool2) {
+                if (partialOverlaps(allIDs[i - 1], allIDs[i])) {
                     partialOverlaps++;
                 }
             }
@@ -46,19 +45,7 @@ public class IDs {
         int firstRange2 = Integer.parseInt(splitStrings(s2)[0]);
         int secondRange2 = Integer.parseInt(splitStrings(s2)[1]);
 
-        if (firstRange1 <= firstRange2 && secondRange1 >= firstRange2) {
-            return true;
-        }
-        if (firstRange2 <= firstRange1 && secondRange2 >= firstRange1) {
-            return true;
-        }
-        if (firstRange1 <= firstRange2 && secondRange2 <= secondRange1) {
-            return true;
-        }
-        if (firstRange2 <= firstRange1 && secondRange1 <= secondRange2) {
-            return true;
-        }
-        return false;
+        return firstRange1 <= firstRange2 && secondRange1 >= firstRange2 || firstRange2 <= firstRange1 && secondRange2 >= firstRange1 || firstRange1 <= firstRange2 && secondRange2 <= secondRange1 || firstRange2 <= firstRange1 && secondRange1 <= secondRange2;
     }
 
     private static boolean isOverlapping (String s1, String s2) {
@@ -68,17 +55,7 @@ public class IDs {
         int firstRange2 = Integer.parseInt(splitStrings(s2)[0]);
         int secondRange2 = Integer.parseInt(splitStrings(s2)[1]);
 
-        //wenn vom ersten die erste Range kleiner als die vom zweiten ist
-        //wenn vom ersten die zweite Range groesser ist als die vom zweiten
-        if (firstRange1 <= firstRange2 && secondRange2 <= secondRange1) {
-            return true;
-        }
-        //wenn vom zweiten die erste Range kleiner als die vom ersten ist
-        //wenn vom zweiten die zweite Range groesser ist als die vom ersten
-        if (firstRange2 <= firstRange1 && secondRange1 <= secondRange2) {
-            return true;
-        }
-        return false;
+        return firstRange1 <= firstRange2 && secondRange2 <= secondRange1 || firstRange2 <= firstRange1 && secondRange1 <= secondRange2;
     }
 
 
